@@ -1,8 +1,8 @@
-const config    = require("../config/index.js");
+const config    = require("../config/index");
 const express   = require("express");
-const logger    = require("../src/services/Logger.js");
-const morgan    = require( 'morgan' );
-
+const logger    = require("../src/services/loggerService");
+const morgan    = require("morgan");
+const routes    = require("../src/routes/index");
 class ExpressLoader {
     constructor () {
         const app = express();
@@ -14,24 +14,13 @@ class ExpressLoader {
         /** Set up middleware **/
         app.use(morgan('dev'));
 
-        /** Enable CORS **/
-        app.use(function(req, res, next) {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, x-access-token");
-            next();
-        });
-
-        /** Routes **/
-        app.get('/', function(req, res) {
-            res.send('hello world');
-        });
+        /** Pass app instance to routes **/
+        routes(app);
 
         this.app = app;
     }
 
-
-
+    /** Server instance getter **/
     get Server () {
         return this.server;
     }

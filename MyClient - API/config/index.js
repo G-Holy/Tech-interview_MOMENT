@@ -1,9 +1,9 @@
 const config = {
-  dbUrl: process.env.DBURL || "mongodb://localhost/test-db",
+  dbUrl: process.env.DB_URL || "mongodb://localhost/backup-db",
   port: process.env.PORT || 3000,
   env: process.env.NODE_ENV || "development",
   logDir: process.env.LOGDIR || "logs",
-//   viewEngine: process.env.VIEW_ENGINE || "html" TO CHECK
+  secret: process.env.JWT_SECRET
 };
 
 module.exports = config;
