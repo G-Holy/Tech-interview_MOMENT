@@ -1,12 +1,8 @@
 const UserService = require("../services/UserService");
 const UserServiceInstance = new UserService();
-// Faire la validation avec joi
-// Validation de la requete
 
-//  POST auth/register
 exports.registerUser = async (req, res, next) => {
     let userData = { ...req.body };
-    // validation de la requete TODO
 
     try {
         const createUser = await UserServiceInstance.create(userData);
@@ -18,7 +14,6 @@ exports.registerUser = async (req, res, next) => {
 
 exports.loginUser = async (req, res, next) => {
     let userData = { ...req.body };
-    // validation de la requete TODO
 
     try {
         const logUser = await UserServiceInstance.login(userData);
