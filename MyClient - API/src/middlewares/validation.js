@@ -5,11 +5,11 @@ const joiValidation = (schema) => {
         const { error } = schema.validate(req.body); 
 
         if (!error) { 
-            next(); 
+            return next(); 
         } else { 
             const { details } = error; 
             const message = details.map(i => i.message).join(',');
-            res.status(422).json({ error: message }) } 
+            return res.status(422).json({sucess:false, error: message }) } 
     } 
 } 
 

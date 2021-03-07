@@ -5,10 +5,7 @@ const path = require('path');
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),
-  defaultMeta: {
-      service: 'smoke-signal-service',
-      time: new Date().toISOString()
-    },
+  defaultMeta: { time: new Date().toISOString() },
   transports: [
     
     /**

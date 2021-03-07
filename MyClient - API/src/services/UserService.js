@@ -14,44 +14,34 @@ class UserService {
     }
 
     async create(userData) {
-        try {
-            userData.password = bcrypt.hashSync(userData.password, 8);
-            const newUser = await this.MongooseServiceInstance.create(userData);
-            var token = jwt.sign({ id: newUser._id}, config.secret);
+        let {email, password} = userData;
+        
+        const userExist = await this.MongooseServiceInstance.findOne({ email });
+        if (userExist)
+            throw ({ status:409, message: "This email is already registered" });
+
+        userData.password = bcrypt.hashSync(password, 8);
+        const newUser = await this.MongooseServiceInstance.create(userData);
+        var token = jwt.sign({ id: newUser._id}, config.secret);
             
-            return { success: true, token };
-        } catch (e) {
-            return  { success: false, error: e };
-        }
+        return { success: true, token };      
     }
 
     async login({ email, password }) {
-        try {
-            const user = await this.MongooseServiceInstance.findOne({ email });
-            var payload;
+        const user = await this.MongooseServiceInstance.findOne({ email });
+        
+        if (!user || !bcrypt.compareSync(password, user.password))
+            throw ({ status: 403, message: "You have entered an invalid username or password" });
 
-            //validation de user TODO
-            if (bcrypt.compareSync(password, user.password)) {
-                var token = jwt.sign({ id:user._id }, config.secret);
-                payload = { success: true, token };    
-            } else {
-                payload = { success: false, error: "Incorrect password"}
-            }
-            return payload;
-        } catch (e) {
-            return  { success: false, error: e };
-        }
+        var token = jwt.sign({ id:user._id }, config.secret);
+        return { success: true, token };
     }
 
     async getLoggedUser(_id) {
-        try {
-            const {email, firstname, lastname} = await this.MongooseServiceInstance.findOne({ _id });
-            const data =  {email, firstname, lastname };
-
-            return { success: true, data };
-        } catch (e) {
-            return { success:false, error: e };
-        }
+        const {email, firstname, lastname} = await this.MongooseServiceInstance.findOne({ _id });
+        const data =  {email, firstname, lastname };
+        
+        return { success: true, data };
     }
 }
 

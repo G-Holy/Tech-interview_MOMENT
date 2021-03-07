@@ -16,7 +16,10 @@ class ExpressLoader {
 
         /** Pass app instance to routes **/
         routes(app);
-
+        
+        /** Setup error handling, this must be after all other middleware **/
+        app.use(ExpressLoader.errorHandler);
+        
         this.app = app;
     }
 
@@ -31,8 +34,24 @@ class ExpressLoader {
             logger.info(`Express server running, now listening on port ${config.port}`);
         });
    }
+    static errorHandler (error, req, res, next) {
+        if (res.headersSent)
+            return next(error);
 
-   static errorHandler ( error, req, res, next ) {}
+        var parsedError;
+        try {
+            parsedError = (error && typeof error === "object") ? JSON.stringify(error) : error;
+        } catch (e) {
+            logger.error(e);
+        }
+
+        if (!error.status) {
+            logger.error(parsedError);
+            return res.status(500).send({sucess:false, message:"Something broke!"});
+        }
+
+        return res.status(error.status).json({ success:false, error: error.message });
+    }
 }
 
 module.exports = ExpressLoader;
