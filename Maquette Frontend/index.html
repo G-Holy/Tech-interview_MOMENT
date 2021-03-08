@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>MyClient - Authentication</title>
+  <link rel="icon" href="./img/favicon.png" />
+  <link rel="stylesheet" href="./css/styles.min.css" />
+</head>
+
+<body>
+  <div class="centered-form">
+    <div class="centered-form__box">
+
+      <h1 id="formTitle">Connexion</h1>
+
+      <form id="loginForm">
+        <label>Email</label>
+        <input type="text" name="email" />
+        <label>Password</label>
+        <input type="text" name="password" />
+        <button>Ok</button>
+      </form>
+
+      <form id="registerForm" style="visibility: hidden;max-height: 0;">
+        <label>Email</label>
+        <input type="text" name="email" />
+        <label>Password</label>
+        <input type="text" name="password" />
+        <label>Firstname</label>
+        <input type="text" name="firstname" />
+        <label>Lastname</label>
+        <input type="text" name="lastname" />
+        <button>Login</button>
+      </form>
+
+      <div id="welcomePage" style="visibility: hidden;max-height: 0;">
+        <p>Welcome to MyClient App</p>
+        <p class="token_placeholder">token here</p>
+      </div>
+
+      <button class="switch" type="button" style="padding-top: 1em;">
+        Sign in
+      </button>
+
+      <div id="errorMessage">...</div>
+
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="index.js"></script>
+
+</html>
