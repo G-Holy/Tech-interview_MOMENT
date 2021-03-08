@@ -11,14 +11,14 @@
   <div class="centered-form">
     <div class="centered-form__box">
 
-      <h1 id="formTitle">Connexion</h1>
+      <h1 id="formTitle">MyClient </h1>
 
-      <form id="loginForm">
+      <form id="loginForm" style="visibility: visible;">
         <label>Email</label>
         <input type="text" name="email" />
         <label>Password</label>
         <input type="text" name="password" />
-        <button>Ok</button>
+        <button>Login</button>
       </form>
 
       <form id="registerForm" style="visibility: hidden;max-height: 0;">
@@ -30,7 +30,7 @@
         <input type="text" name="firstname" />
         <label>Lastname</label>
         <input type="text" name="lastname" />
-        <button>Login</button>
+        <button>Register</button>
       </form>
 
       <div id="welcomePage" style="visibility: hidden;max-height: 0;">
@@ -38,11 +38,11 @@
         <p class="token_placeholder">token here</p>
       </div>
 
-      <button class="switch" type="button" style="padding-top: 1em;">
-        Sign in
-      </button>
+      <button id="switch" type="button" style="padding-top: 1em;visibility: visible;">Go to sign up</button>
 
-      <div id="errorMessage">...</div>
+      <button id="logout" type="button" style="padding-top: 1em;visibility: hidden;max-height: 0;">Logout</button>
+
+      <div id="errorMessage" style="margin-top: 5px;color: red;word-wrap: break-word;"></div>
 
     </div>
   </div>
