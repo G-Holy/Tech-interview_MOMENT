@@ -1,6 +1,16 @@
 const config  = require("../../config/index");
 const jwt     = require("jsonwebtoken");
 
+/**
+ * Middleware d'authentification
+ * Vérifie l'existance et la validité d'un jsonWebToken dans le header d'une requête
+ * 
+ * @function
+ * @param {Object} req - Objet Express de requête
+ * @param {Object} res - Objet Express de réponse
+ * @param {Function} next - Fonction Express d'appel du prochain middleware
+ * @return {undefined}
+ */
 const auth = (req, res, next) => {
   try {
     const token = req.header("Authorization").replace("Bearer ", "");    

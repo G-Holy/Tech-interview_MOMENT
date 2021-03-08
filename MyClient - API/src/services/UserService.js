@@ -1,25 +1,36 @@
-// BUSINESS LOGIC
-// BUSINESS VALIDATION
-// PAS DE REQ NI RES QUE DE LA DATA PROPRE
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const MongooseService = require("./db/MongooseService");
-const UserModel = require("../models/User");
-const config = require("../../config/index");
+const bcrypt            = require("bcryptjs");
+const config            = require("../../config/index");
+const jwt               = require("jsonwebtoken");
+const MongooseService   = require("./db/MongooseService");
+const UserModel         = require("../models/User");
 
+/**
+ * Class qui encapsule la Business Logic du model User
+ * 
+ * @property {object} MongooseServiceInstance - Instance de la class d'abstraction de communication avec BDD
+ */
 class UserService {
     
     constructor() {
         this.MongooseServiceInstance = new MongooseService(UserModel);
     }
 
+    /**
+     * Crée un nouvel utilisateur de l'application
+     * 
+     * @param {object} userData - Les informations de l'utilisateur à créer
+     * @param {string} userData.email - Email
+     * @param {string} userData.password - Mot de passe
+     * @param {string} userData.firstname - Prénom
+     * @param {string} userData.lasttname - Nom
+     * @returns {Object} - L'objet de réponse avec un JWT
+     */
     async create(userData) {
         let {email, password} = userData;
-        
+
         const userExist = await this.MongooseServiceInstance.findOne({ email });
         if (userExist)
             throw ({ status:409, message: "This email is already registered" });
-
         userData.password = bcrypt.hashSync(password, 8);
         const newUser = await this.MongooseServiceInstance.create(userData);
         var token = jwt.sign({ id: newUser._id}, config.secret);
@@ -27,6 +38,13 @@ class UserService {
         return { success: true, token };      
     }
 
+    /**
+     * Connecte un utilisateur existant
+     * 
+     * @param {string} email - Email de l'utilisateur
+     * @param {string} password - Mot de passe de l'utilisateur
+     * @returns {Object} - L'objet de réponse avec un JWT
+     */
     async login({ email, password }) {
         const user = await this.MongooseServiceInstance.findOne({ email });
         
@@ -37,11 +55,17 @@ class UserService {
         return { success: true, token };
     }
 
+    /**
+     * Récupère les information de l'utilisateur connecté
+     * 
+     * @param {string} _id - id dans le BDD de l'utilisateur
+     * @returns {Object} - L'objet de réponse avec les informations personelles de l'utilisateur
+     */
     async getLoggedUser(_id) {
         const {email, firstname, lastname} = await this.MongooseServiceInstance.findOne({ _id });
-        const data =  {email, firstname, lastname };
+        const user =  {email, firstname, lastname };
         
-        return { success: true, data };
+        return { success: true, user };
     }
 }
 

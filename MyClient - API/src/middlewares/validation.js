@@ -1,5 +1,13 @@
 const joi = require("joi");
 
+/**
+ * Générateur du middleware de validation de données
+ * Le middleware créé vérifie l'existance et l'intégrité des données d'une requête selon un schema Joi
+ * 
+ * @function
+ * @param {Object} schema - Schema Joi
+ * @return {function} - Fonction middleware instancié selon un schéma Joi
+ */
 const joiValidation = (schema) => { 
     return (req, res, next) => { 
         const { error } = schema.validate(req.body); 

@@ -2,7 +2,7 @@ const auth = require("./auth");
 
 const routes = app => {
     
-    /** Enable CORS **/
+    /** Autorise le CORS **/
     app.use((req, res, next) => {
         res.setHeader( "Access-Control-Allow-Origin", "*" );
         res.setHeader(
@@ -18,6 +18,7 @@ const routes = app => {
         next();
     });
 
+    /** Routes d'authentification **/
     app.use("/auth", auth);
 };
 

@@ -1,40 +1,61 @@
-const config    = require("../config/index");
-const express   = require("express");
-const logger    = require("../src/services/loggerService");
-const morgan    = require("morgan");
-const routes    = require("../src/routes/index");
+const config        = require("../config/index");
+const createError   = require('http-errors');
+const express       = require("express");
+const logger        = require("../src/services/loggerService");
+const morgan        = require("morgan");
+const routes        = require("../src/routes/index");
+const swaggerJSDoc  = require("swagger-jsdoc");
+const swaggerParam  = require('../swagger.json');
+const swaggerUi     = require("swagger-ui-express");
+
+/**
+ * Classe d'abstraction qui encapsule Express
+ * 
+ * @property {object} app - Object d'application Express
+ */
 class ExpressLoader {
     constructor () {
         const app = express();
 
-        /** Express configuration **/
+        /** Configuration d'express **/
         app.use(express.json({limit: "20mb"}));
         app.use(express.urlencoded({ extended: true }));
 
-        /** Set up middleware **/
+        /** Middleware **/
         app.use(morgan('dev'));
 
-        /** Pass app instance to routes **/
+        const swaggerSpec = swaggerJSDoc(swaggerParam);
+        app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+        /** Expose les routes **/
         routes(app);
+
+        app.use(function (req,res,next) {
+	        next(createError(404));
+        });
         
-        /** Setup error handling, this must be after all other middleware **/
+        /** Middleware de gestion d'erreurs **/
         app.use(ExpressLoader.errorHandler);
         
         this.app = app;
     }
 
-    /** Server instance getter **/
+    /** Retourne une instance du serveur Express **/
     get Server () {
         return this.server;
     }
 
-    /** Launch server **/
+    /** Expose le serveur web sur le port du fichier de configuration **/
    launch() {
         this.server = this.app.listen(config.port, () => {
             logger.info(`Express server running, now listening on port ${config.port}`);
         });
    }
+
+   /** Middleware de gestion des erreurs **/
     static errorHandler (error, req, res, next) {
+
+        /** Une réponse a déjà été envoyée **/
         if (res.headersSent)
             return next(error);
 

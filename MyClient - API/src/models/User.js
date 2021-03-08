@@ -1,6 +1,8 @@
-// models/user.js
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
+/** 
+ * Model User : Utilisateur de l'application
+*/
 const userSchema = mongoose.Schema({
     email: {
       type: String,

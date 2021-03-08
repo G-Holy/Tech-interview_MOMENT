@@ -9,15 +9,15 @@ const logger = winston.createLogger({
   transports: [
     
     /**
-     * Write all logs with level `error` and below to `error.log`
-     * Write all logs with level `info` and below to `combined.log`
+     * Ecrit les logs de type `error` dans `error.log`
+     * Ecrit les logs de type `info` dans `combined.log`
      */
     new winston.transports.File({ filename: path.join(config.logDir, 'error.log'), level: 'error' }),
     new winston.transports.File({ filename: path.join(config.logDir, 'combined.log') }),
   ],
 });
 
-/* If we're not in production then log to the console */
+/* Si le serveur n'est pas en production écrit les log dans la consoles */
 if (process.env.ENV !== 'production') {
   logger.add(new winston.transports.Console({
     format: winston.format.simple(),

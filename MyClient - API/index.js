@@ -3,10 +3,10 @@ const ExpressLoader     = require("./loaders/ExpressLoader");
 const fs                = require("fs");
 const MongooseLoader    = require("./loaders/MongooseLoader");
 
-/** Create log directory if it does not exist **/
+/** crée le dossier de log si il n'existe pas déjà **/
 !fs.existsSync(config.logDir) && fs.mkdirSync(config.logDir);
 
-/** Connect to database then launch server if succesful **/
+/** Tente de connecter à la BDD avant de démarrer le serveur web **/
 var server;
 new MongooseLoader(() => {
     server = new ExpressLoader();

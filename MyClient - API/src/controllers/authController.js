@@ -1,6 +1,7 @@
 const UserService = require("../services/UserService");
 const UserServiceInstance = new UserService();
 
+/** POST /auth/register **/
 exports.registerUser = async (req, res, next) => {
     try {
         let userData = { ...req.body };
@@ -12,6 +13,7 @@ exports.registerUser = async (req, res, next) => {
     }
 };
 
+/** POST /auth/login **/
 exports.loginUser = async (req, res, next) => {
     try {
         let userData = { ...req.body };
@@ -23,6 +25,7 @@ exports.loginUser = async (req, res, next) => {
     }
 };
 
+/** GET /auth/me **/
 exports.getAuthenticatedUser = async (req, res, next) => {
     try {
         const loggedUser = await UserServiceInstance.getLoggedUser(req.userId);
@@ -32,6 +35,7 @@ exports.getAuthenticatedUser = async (req, res, next) => {
     }
 };
 
+/** GET /auth/logout **/
 exports.logoutUser = (req, res, next) => {
     return res.send({success: true, message:"you have been successfully logged out"});
 };

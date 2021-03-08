@@ -1,5 +1,11 @@
 const joi = require("joi") 
 
+/**
+ * Objet contenant les schémas et règles JOI de validation des données du model User
+ * 
+ * @property {object} registerSchema - Schéma de validation de la route /auth/register
+ * @property {object} loginSchema - Schéma de validation de la route /auth/login
+ */
 const authSchemas = {
     registerSchema: joi.object().keys({
         email: joi.string()
