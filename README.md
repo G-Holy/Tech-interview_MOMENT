@@ -1,5 +1,5 @@
 # Tech-interview_MOMENT
-INTRO
+
 
 # Getting started
 
@@ -7,7 +7,7 @@ Pour démarrer le serveur en local:
 
 - Cloner le projet
 - `npm install` pour installer les dépendances
-- Installer MongoDB Community Edition ([instructions](https://docs.mongodb.com/manual/installation/#tutorials)) démarrer son service en éxécutant la commande `mongod`
+- Installer MongoDB Community Edition ([instructions](https://docs.mongodb.com/manual/installation/#tutorials)) démarrer son service en exécutant la commande `mongod`
 - `npm run dev` pour démarrer le serveur en local
 
 # Revue du code
@@ -15,11 +15,11 @@ Pour démarrer le serveur en local:
 ## Dépendances
 
 - [express](https://github.com/expressjs/express) - Le serveur pour gérer et envoyer des requêtes HTTP
-- [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) - Permet de générer et gérer des tokens d'authentification
-- [mongoose](https://github.com/Automattic/mongoose) - ORM pour créer et modifier des données MongoDB
-- [bcryptjs](https://github.com/kelektiv/node.bcrypt.js) - Pour manipuler et hasher les mots de passe
+- [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) - Permet de générer et de gérer des tokens d'authentification
+- [mongoose](https://github.com/Automattic/mongoose) - ORM pour créer et modifier des données avec MongoDB
+- [bcryptjs](https://github.com/kelektiv/node.bcrypt.js) - Pour manipuler et hasher des mots de passe
 - [swagger-jsdoc](https://github.com/Surnet/swagger-jsdoc) - Permet de lire les commentaires JSDoc et générer un objet de spécification OpenAPI Swagger
-- [swagger-ui-express](https://github.com/scottie1984/swagger-ui-express) - Génère et expose une page de documentation Swagger openAPI
+- [swagger-ui-express](https://github.com/scottie1984/swagger-ui-express) - Génère et expose une page de documentation Swagger OpenAPI
 - [jsdoc](https://github.com/jsdoc/jsdoc) - Générer des commentaires structurés dans le code pour le documenter 
 - [morgan](https://github.com/expressjs/morgan) - Logger de requête HTTP
 - [winston](https://github.com/winstonjs/winston) - Outil de gestion des logs
@@ -30,10 +30,10 @@ Pour démarrer le serveur en local:
 
 ## Structure de l'application
 
-L'application est architecturé en MVC (Model, view, controller) orienté services.Le principe est de séparer la logique métier du reste de l'application. Ce modèle d'architecture vise à rendre l'application scalable, modulable et facile à tester.
+L'application est architecturée en MVC (Model, view, controller) orienté services. Le principe est de séparer la logique métier du reste de l'application. Ce modèle d'architecture vise à rendre l'application scalable, modulable et facile à tester.
 
 `index.js`
-Le point d'entrée de l'application. Ce fichier initialise le serveur web express et se connecte à la base de donnée MongoDB avec mongoose.
+Le point d'entrée de l'application. Ce fichier initialise le serveur web express et se connecte à la base de données MongoDB avec mongoose.
 
 `config/`
 Contient les fichiers d'environnements et de configuration de l'application.
@@ -43,7 +43,7 @@ Contient les loaders pour Express et MongoDB.
 Le but des loaders est d'abstraire et d'encapsuler tous les processus de démarrage de notre application. Le maintient du code est plus aisé et cela nous permet de changer de framework et d'outils plus facilement
 
 `src/models/`
-Contient les modèles de données sous la forme de schéma Mongoose.
+Contient les modèles de données Mongoose.
 
 `src/middlewares/`
 Contient les fonctions middleware de l'application :
@@ -51,22 +51,22 @@ Contient les fonctions middleware de l'application :
 - Un middlewared de Validation des données pour les controllers
 
 `src/routes/`
-Contient les routes express et leurs définition.
+Contient les routes express et leurs définitions.
 
 `src/controllers/`
-Contient les controller express pour les routes.
+Contient les contrôleurs express des routes.
 Les contrôleurs s'occupent de gérer et de répondre aux requêtes HTTP du client. Ils ne doivent pas contenir la logique métier, ils extraient les données contenues dans le corps d'une requête pour les transmettre aux services.
 
 `src/services/`
 Encapsule toute la logique métier.
-Un service nterprête la donnée et envoi une réponse aux contrôleurs, c'est le cerveau de l'application. Les services ne doivent pas dépendre d'un framework, ils n'intéragissent pas directement avec la base de données.
+Un service interprête la donnée et envoi une réponse aux contrôleurs, c'est le cerveau de l'application. Les services ne doivent pas dépendre d'un framework, ils n'interagissent pas directement avec la base de données.
 
 `src/services/db/MongooseService.js`
-C'est la couche de manipulation de la donnée. Ce fichier contient une classe d'abstraction qui s'occupe de toutes les intéractions avec la base de données.
+C'est la couche de manipulation de la donnée. Ce fichier contient une classe d'abstraction qui s'occupe de toutes les interactions avec la base de données.
 
 ## Gestion d'erreur
 
-Dans le loaderExpress on défini le middleware de gestion des erreurs. Il s'occupe de vérifier si l'erreure contient un champ "status" et "message" afin de renvoyer un message adapté au client.
+Le middleware de gestion des erreurs est définit dans le loader Express. Il s'occupe de vérifier si l'erreur contient un champ "status" et "message" afin de renvoyer un message adapté au client.
 
 ## Authentification
 
