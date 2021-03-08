@@ -15,16 +15,16 @@ Pour démarrer le serveur en local:
 ## Dépendances
 
 - [express](https://github.com/expressjs/express) - Le serveur pour gérer et envoyer des requêtes HTTP
-- [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) - Générer et gérer des tokens d'authentification
+- [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) - Permet de générer et gérer des tokens d'authentification
 - [mongoose](https://github.com/Automattic/mongoose) - ORM pour créer et modifier des données MongoDB
-- [bcryptjs](https://github.com/kelektiv/node.bcrypt.js) - Manipuler et hasher les mots de passe
-- [swagger-jsdoc](https://github.com/Surnet/swagger-jsdoc) - Lire les commentaires JSDoc et générer un objet de spécification OpenAPI Swagger
-- [swagger-ui-express](https://github.com/scottie1984/swagger-ui-express) - Générer et exposer une page de documentation 
-- [jsdoc](https://github.com/jsdoc/jsdoc) - Générer documenter le code et générer des commentaires
+- [bcryptjs](https://github.com/kelektiv/node.bcrypt.js) - Pour manipuler et hasher les mots de passe
+- [swagger-jsdoc](https://github.com/Surnet/swagger-jsdoc) - Permet de lire les commentaires JSDoc et générer un objet de spécification OpenAPI Swagger
+- [swagger-ui-express](https://github.com/scottie1984/swagger-ui-express) - Génère et expose une page de documentation Swagger openAPI
+- [jsdoc](https://github.com/jsdoc/jsdoc) - Générer des commentaires structurés dans le code pour le documenter 
 - [morgan](https://github.com/expressjs/morgan) - Logger de requête HTTP
 - [winston](https://github.com/winstonjs/winston) - Outil de gestion des logs
-- [nodemon](https://github.com/remy/nodemon) - Redémarrer automatiquement l'application à chaque changement du code
-- [env-cmd](https://github.com/toddbluhm/env-cmd) - Gérer les fichiers .env
+- [nodemon](https://github.com/remy/nodemon) - Permet de redémarrer automatiquement l'application à chaque changement du code
+- [env-cmd](https://github.com/toddbluhm/env-cmd) - Gère les fichiers .env
 
 
 
