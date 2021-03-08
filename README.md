@@ -69,7 +69,7 @@ C'est la couche de manipulation de la donnée. Ce fichier contient une classe d'
 
 Une route "/api-docs" expose un déscriptif des routes de l'application.
 
-Nous utilisons Swagger ainsi que JSDoc pour documenter le code.
+Nous utilisons Swagger ainsi que JSDoc pour documenter le code.<br />
 (https://dev.to/kabartolo/how-to-document-an-express-api-with-swagger-ui-and-jsdoc-50do)
 
 
