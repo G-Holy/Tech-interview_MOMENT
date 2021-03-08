@@ -1,7 +1,8 @@
-# Tech-interview_MOMENT
+# Test Technique MOMENT
 
+Création d'un système d'authentification pour la société MyClient.
 
-# Getting started
+# Pour commencer
 
 Pour démarrer le serveur en local:
 
@@ -63,6 +64,13 @@ Un service interprête la donnée et envoi une réponse aux contrôleurs, c'est 
 
 `src/services/db/MongooseService.js`
 C'est la couche de manipulation de la donnée. Ce fichier contient une classe d'abstraction qui s'occupe de toutes les interactions avec la base de données.
+
+## Documentation
+
+Une route "/api-docs" expose un déscriptif des routes de l'application.
+
+Nous utilisons Swagger ainsi que JSDoc pour documenter le code (https://dev.to/kabartolo/how-to-document-an-express-api-with-swagger-ui-and-jsdoc-50do)
+
 
 ## Gestion d'erreur
 
