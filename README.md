@@ -79,7 +79,7 @@ Le middleware de gestion des erreurs est définit dans le loader Express. Il s'o
 
 ## Authentification
 
-Les requêtes sont authentifiées en utilisant le header "Authorization" avec un JWT valide. C'est un middleware défini dans `src/middlewares/auth.js` qui vérifi ce header pour chaque requête. Si le token est invalide ou absent une réponse est envoyée au client avec le code http 401.
+Les requêtes sont authentifiées en utilisant le header "Authorization" avec un JWT valide. C'est un middleware défini dans `src/middlewares/auth.js` qui vérifi ce header pour chaque requête. Si le token est invalide ou absent une réponse est envoyée au client avec le code HTTP 401.
 
 
 <br />
