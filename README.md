@@ -4,7 +4,7 @@ Création d'un système d'authentification pour la société MyClient.
 
 # Pour commencer
 
-Pour démarrer le serveur en local:
+Pour démarrer le serveur en local :
 
 - Cloner le projet
 - `npm install` pour installer les dépendances
@@ -69,7 +69,8 @@ C'est la couche de manipulation de la donnée. Ce fichier contient une classe d'
 
 Une route "/api-docs" expose un déscriptif des routes de l'application.
 
-Nous utilisons Swagger ainsi que JSDoc pour documenter le code (https://dev.to/kabartolo/how-to-document-an-express-api-with-swagger-ui-and-jsdoc-50do)
+Nous utilisons Swagger ainsi que JSDoc pour documenter le code.
+(https://dev.to/kabartolo/how-to-document-an-express-api-with-swagger-ui-and-jsdoc-50do)
 
 
 ## Gestion d'erreur
@@ -78,7 +79,7 @@ Le middleware de gestion des erreurs est définit dans le loader Express. Il s'o
 
 ## Authentification
 
-Les requêtes sont authentifiées en utilisant le header "Authorization" avec un JWT valide. C'est un middleware défini dans "src/middlewares/auth.js" qui vérifi ce header pour chaque requête. Si le token est invalide ou absent une réponse est envoyée au client avec le code http 401.
+Les requêtes sont authentifiées en utilisant le header "Authorization" avec un JWT valide. C'est un middleware défini dans `src/middlewares/auth.js` qui vérifi ce header pour chaque requête. Si le token est invalide ou absent une réponse est envoyée au client avec le code http 401.
 
 
 <br />
